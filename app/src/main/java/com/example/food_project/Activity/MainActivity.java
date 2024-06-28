@@ -121,7 +121,7 @@ public class MainActivity extends BaseActivity {
 //                      Đây là ID của một thành phần giao diện người dùng (RecyclerView) trong file layout XML của bạn.
                         binding.bestFoodView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
 //                        Tạo adapter cho RecyclerView với danh sách Foods
-                        RecyclerView.Adapter<BestFoodsAdapter.viewholder> adapter = new BestFoodsAdapter(list);
+                        RecyclerView.Adapter adapter = new BestFoodsAdapter(list);
 //                        Gán adapter cho RecyclerView
                         binding.bestFoodView.setAdapter(adapter);
                     }
@@ -153,9 +153,6 @@ public class MainActivity extends BaseActivity {
 
                     if (list.size() > 0) {
                         binding.categoryView.setLayoutManager(new GridLayoutManager(MainActivity.this,4));
-//                        for (Category item : list) {
-//                            Log.d("IDCategoryList", String.valueOf(item.getId()));
-//                        }
                         RecyclerView.Adapter adapter = new CategoryAdapter(list);
                         binding.categoryView.setAdapter(adapter);
                     }

@@ -53,49 +53,7 @@ public class ListFoodsActivity extends BaseActivity {
 
         getIntentExtra();
         initList();
-        setVariable();
-
-
     }
-
-    private void setVariable() {
-    }
-
-//    private void initList() {
-//        DatabaseReference myRef = database.getReference("Foods");
-//        binding.progressBar.setVisibility(View.VISIBLE);
-//        ArrayList<Foods> list = new ArrayList<>();
-//
-//        Query query;
-//        if(isSearch){
-//            query = myRef.orderByChild("Title").startAt(searchText).endAt(searchText + '\uf8ff');
-//        }
-//        else {
-//            query = myRef.orderByChild("CategoryId").equalTo(categoryId);
-//
-//            query.addListenerForSingleValueEvent(new ValueEventListener() {
-//                @Override
-//                public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                    if (snapshot.exists()) {
-//                        for (DataSnapshot issue : snapshot.getChildren()) {
-//                            list.add(issue.getValue(Foods.class));
-//                        }
-//                        if (list.size() > 0) {
-//                            binding.foodListView.setLayoutManager(new GridLayoutManager(ListFoodsActivity.this, 2));
-//                            apdapterListFood = new FoodListAdapter(list);
-//                            binding.foodListView.setAdapter(apdapterListFood);
-//                        }
-//                        binding.progressBar.setVisibility(View.GONE);
-//                    }
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//
-//                }
-//            });
-//        }
-//    }
 
     private void initList() {
 //        Tham chiếu đến "Foods" trong cơ sở dữ liệu Firebase.
@@ -106,9 +64,12 @@ public class ListFoodsActivity extends BaseActivity {
         ArrayList<Foods> list = new ArrayList<>();
 //      Khai báo biến query để thực hiện truy vấn
         Query query;
+//        Nếu isSearch là true, thực hiện truy vấn tìm kiếm theo Title bắt đầu bằng searchText.
         if (isSearch) {
             query = myRef.orderByChild("Title").startAt(searchText).endAt(searchText + '\uf8ff');
-        } else {
+        }
+//        Nếu không, thực hiện truy vấn lọc theo CategoryId.
+        else {
             query = myRef.orderByChild("CategoryId").equalTo(categoryId);
         }
 
@@ -130,10 +91,10 @@ public class ListFoodsActivity extends BaseActivity {
 //                        Đặt adapter cho RecyclerView.
                         binding.foodListView.setAdapter(apdapterListFood);
                     }
+                    binding.noResultsTextView.setVisibility(View.GONE);
                     binding.progressBar.setVisibility(View.GONE);
                 } else {
-                    // Xử lý khi không tìm thấy kết quả
-                    Log.d("ListFoodsActivity", "No results found");
+                    binding.noResultsTextView.setVisibility(View.VISIBLE);
                     binding.progressBar.setVisibility(View.GONE);
                 }
             }
@@ -141,7 +102,6 @@ public class ListFoodsActivity extends BaseActivity {
             @Override
 //            Phương thức này được gọi khi truy vấn bị hủy hoặc gặp lỗi.
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.e("ListFoodsActivity", "Query cancelled or failed: " + error.getMessage());
                 binding.progressBar.setVisibility(View.GONE);
             }
         });

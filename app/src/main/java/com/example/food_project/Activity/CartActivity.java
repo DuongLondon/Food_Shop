@@ -90,13 +90,13 @@ private double tax;
     private void applyDiscount(String discountCode) {
         // Define your discount codes and corresponding discount rates
         switch (discountCode) {
-            case "PhamDung":
-                discount = 0.5; // 10% discount
-                Toast.makeText(this, "Discount applied successfully: 50%", Toast.LENGTH_SHORT).show();
+            case "DISCOUNT10":
+                discount = 0.1; // 10% discount
+                Toast.makeText(this, "Discount applied successfully: 10%", Toast.LENGTH_SHORT).show();
                 break;
-            case "DangDuong":
-                discount = -0.9; // 20% discount
-                Toast.makeText(this, "Discount applied successfully: -90%", Toast.LENGTH_SHORT).show();
+            case "DISCOUNT20":
+                discount = 0.2; // 20% discount
+                Toast.makeText(this, "Discount applied successfully: 20%", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 discount = 0.0;

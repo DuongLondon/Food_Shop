@@ -28,11 +28,6 @@ public class IntroActivity extends BaseActivity {
 
         setVariable();
         getWindow().setStatusBarColor(Color.parseColor("#FFE4B5"));
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-//            return insets;
-//        });
     }
 
     private void setVariable() {

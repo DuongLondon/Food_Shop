@@ -32,7 +32,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
     @Override
     public CategoryAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_category, parent, false);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.viewholder_category, parent, false);
         return new viewholder(inflate);
     }
 
@@ -74,7 +74,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
                 break;
             }
         }
-
+        // Lấy ảnh button từ 1-8
         int drawableResourceId = context.getResources().getIdentifier(items.get(position).getImagePath(),
                 "drawable", holder.itemView.getContext().getOpPackageName());
 
@@ -85,7 +85,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.viewho
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, ListFoodsActivity.class);
             intent.putExtra("CategoryId", items.get(position).getId());
-            Log.d("Id category: ", String.valueOf(items.get(position).getId()));
             intent.putExtra("CategoryName", items.get(position).getName());
             context.startActivity(intent);
         });
